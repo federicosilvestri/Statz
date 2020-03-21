@@ -44,6 +44,10 @@ public class CommandsPerformedListener implements Listener {
 			command = message.trim();
 		}
 
+		if (command.startsWith("/register") || command.startsWith("/login")) {
+			return;
+		}
+
 		PlayerStatSpecification specification = new CommandsPerformedSpecification(player.getUniqueId(), 1,
 				player.getWorld().getName(), command, arguments);
 
