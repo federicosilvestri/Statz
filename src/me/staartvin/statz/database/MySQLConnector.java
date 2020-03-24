@@ -26,6 +26,7 @@ public class MySQLConnector extends DatabaseConnector {
     private String hostname = "localhost:3306";
     private String password = "";
     private String username = "root";
+    private boolean ssl = false;
 
     private HikariDataSource dataSource = null;
 
@@ -41,6 +42,8 @@ public class MySQLConnector extends DatabaseConnector {
         hostname = plugin.getConfigHandler().getMySQLHostname();
         password = plugin.getConfigHandler().getMySQLPassword();
         username = plugin.getConfigHandler().getMySQLUsername();
+        ssl = plugin.getConfigHandler().getMySQLSSL();
+
         DatabaseConnector.databaseName = plugin.getConfigHandler().getMySQLDatabase();
     }
 
@@ -50,6 +53,7 @@ public class MySQLConnector extends DatabaseConnector {
         config.setJdbcUrl("jdbc:mysql://" + this.hostname + "/" + DatabaseConnector.databaseName);
         config.setUsername(this.username);
         config.setPassword(this.password);
+        config.addDataSourceProperty("useSSL",  this.ssl);
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

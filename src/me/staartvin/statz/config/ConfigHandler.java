@@ -138,6 +138,8 @@ public class ConfigHandler {
         return plugin.getConfig().getString("mysql.database", "Statz");
     }
 
+    public boolean getMySQLSSL() { return plugin.getConfig().getBoolean("mysql.useSSL", false); }
+
     public String getBackupMySQLDatabase() {
         return plugin.getConfig().getString("mysql.database for backups", "Statz_backups");
     }
